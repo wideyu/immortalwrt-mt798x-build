@@ -28,6 +28,8 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+        sudo docker image prune --all --force
         sudo -E apt -yqq update
         sudo -E apt -yqq full-upgrade
         sudo -E apt -yqq autoremove --purge
@@ -87,6 +89,7 @@ jobs:
         echo "CONFIG_PACKAGE_kmod-sound-core=y" >> .config
         echo "CONFIG_PACKAGE_kmod-usb-audio=y" >> .config
         echo "CONFIG_PACKAGE_kmod-input-core=y" >> .config
+        echo "CONFIG_PACKAGE_bluez-alsa=y" >> .config
         # openlist
         echo "CONFIG_PACKAGE_kmod-fuse=y" >> .config
         
