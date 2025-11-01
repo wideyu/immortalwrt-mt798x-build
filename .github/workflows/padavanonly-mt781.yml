@@ -63,6 +63,13 @@ jobs:
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
+      
+    - name: Install bluez-alsa
+      run: |
+        cd openwrt
+        wget -qO - https://github.com/raphikWasHere/bluealsa4openwrt/raw/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
+        ./scripts/feeds update
+        ./scripts/feeds install bluez-alsa
 
     - name: Load custom config
       run: |
@@ -92,6 +99,8 @@ jobs:
         echo "CONFIG_PACKAGE_bluez-alsa=y" >> .config
         # openlist
         echo "CONFIG_PACKAGE_kmod-fuse=y" >> .config
+        # device
+        echo "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc=y" >> .config
         
     - name: Download package
       id: package
