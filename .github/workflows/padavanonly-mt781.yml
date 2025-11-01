@@ -64,7 +64,7 @@ jobs:
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
       
-    - name: Install bluez-alsa
+    - name: Install bluezalsa
       run: |
         cd openwrt
         wget -qO - https://github.com/raphikWasHere/bluealsa4openwrt/raw/main/bluez-alsa/packages/full.tar.gz | tar -zxvf - -C ./
