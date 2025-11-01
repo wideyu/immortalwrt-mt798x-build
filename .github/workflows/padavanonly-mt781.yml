@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
       
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10.git
-  REPO_BRANCH: 2410
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6.git
+  REPO_BRANCH: openwrt-24.10-6.6
   TZ: Asia/Shanghai
   FEEDS_CONF: feeds.conf.default
 
@@ -74,6 +74,21 @@ jobs:
         # echo "CONFIG_PACKAGE_kmod-nft-offload=y" >> .config
         # echo "CONFIG_PACKAGE_kmod-nft-socket=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-tproxy=y" >> .config
+        # usb bluetooth audio
+        echo "CONFIG_PACKAGE_kmod-input-uinput=y" >> .config
+        echo "CONFIG_PACKAGE_kmod-6lowpan=y" >> .config
+        echo "CONFIG_PACKAGE_kmod-bluetooth_6lowpan" >> .config
+        echo "CONFIG_PACKAGE_kmod-usb-core" >> .config
+        echo "CONFIG_PACKAGE_kmod-usb-uhci" >> .config
+        echo "CONFIG_PACKAGE_kmod-usb-ohci" >> .config
+        echo "CONFIG_PACKAGE_kmod-usb2" >> .config
+        echo "CONFIG_PACKAGE_kmod-usb3" >> .config
+        echo "CONFIG_PACKAGE_kmod-bluetooth" >> .config
+        echo "CONFIG_PACKAGE_kmod-sound-core" >> .config
+        echo "CONFIG_PACKAGE_kmod-usb-audio" >> .config
+        echo "CONFIG_PACKAGE_kmod-input-core" >> .config
+        # openlist
+        echo "CONFIG_PACKAGE_kmod-fuse" >> .config
         
     - name: Download package
       id: package
