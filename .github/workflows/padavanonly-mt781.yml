@@ -77,7 +77,8 @@ jobs:
     - name: Load custom config
       run: |
         cd openwrt
-        cp -f ./defconfig/mt7981-ax3000.config .config
+        #cp -f ./defconfig/mt7981-ax3000.config .config
+        cat ../MT7981.txt ../GENERAL.txt > .config
         echo "CONFIG_PACKAGE_kmod-netlink-diag=y" >> .config
         # echo "CONFIG_PACKAGE_kmod-nft-compat=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-core=y" >> .config
