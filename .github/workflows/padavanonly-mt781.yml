@@ -28,7 +28,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        #sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
         sudo -E apt -yqq purge firefox
         sudo -E apt -yqq update
         sudo -E apt -yqq full-upgrade
@@ -78,7 +78,7 @@ jobs:
       run: |
         cd openwrt
         #cp -f ./defconfig/mt7981-ax3000.config .config
-        cat $GITHUB_WORKSPACE/ConfigMT7981.txt $GITHUB_WORKSPACE/Config/GENERAL.txt > .config
+        cat $GITHUB_WORKSPACE/MT7981.txt $GITHUB_WORKSPACE/GENERAL.txt > .config
         echo "CONFIG_PACKAGE_kmod-netlink-diag=y" >> .config
         # echo "CONFIG_PACKAGE_kmod-nft-compat=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-core=y" >> .config
