@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     
     permissions:
       contents: write
@@ -78,7 +78,7 @@ jobs:
       run: |
         cd openwrt
         #cp -f ./defconfig/mt7981-ax3000.config .config
-        cat ../MT7981.txt ../GENERAL.txt > .config
+        cat $GITHUB_WORKSPACE/ConfigMT7981.txt $GITHUB_WORKSPACE/Config/GENERAL.txt > .config
         echo "CONFIG_PACKAGE_kmod-netlink-diag=y" >> .config
         # echo "CONFIG_PACKAGE_kmod-nft-compat=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-core=y" >> .config
