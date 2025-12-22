@@ -77,15 +77,15 @@ jobs:
     - name: Load custom config
       run: |
         cd openwrt
-        #cp -f ./defconfig/mt7981-ax3000.config .config
-        cat $GITHUB_WORKSPACE/MT7981.txt $GITHUB_WORKSPACE/GENERAL.txt > .config
+        cp -f ./defconfig/mt7981-ax3000.config .config
+        echo "CONFIG_PACKAGE_kmod-nft-compat=y" >> .config
+        echo "CONFIG_PACKAGE_kmod-nft-fib=y" >> .config
+        echo "CONFIG_PACKAGE_kmod-nft-nat=y" >> .config
+        echo "CONFIG_PACKAGE_kmod-nft-offload=y" >> .config
+        echo "CONFIG_PACKAGE_kmod-nft-socket=y" >> .config
+        # cat $GITHUB_WORKSPACE/MT7981.txt $GITHUB_WORKSPACE/GENERAL.txt > .config
         echo "CONFIG_PACKAGE_kmod-netlink-diag=y" >> .config
-        # echo "CONFIG_PACKAGE_kmod-nft-compat=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-core=y" >> .config
-        # echo "CONFIG_PACKAGE_kmod-nft-fib=y" >> .config
-        # echo "CONFIG_PACKAGE_kmod-nft-nat=y" >> .config
-        # echo "CONFIG_PACKAGE_kmod-nft-offload=y" >> .config
-        # echo "CONFIG_PACKAGE_kmod-nft-socket=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-tproxy=y" >> .config
         # usb bluetooth audio
         echo "CONFIG_PACKAGE_kmod-input-uinput=y" >> .config
