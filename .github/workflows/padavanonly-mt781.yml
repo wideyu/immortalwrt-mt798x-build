@@ -83,10 +83,10 @@ jobs:
         #echo "CONFIG_PACKAGE_kmod-nft-nat=y" >> .config
         #echo "CONFIG_PACKAGE_kmod-nft-offload=y" >> .config
         #echo "CONFIG_PACKAGE_kmod-nft-socket=y" >> .config
+        #echo "CONFIG_PACKAGE_kmod-netlink-diag=y" >> .config
+        #echo "CONFIG_PACKAGE_kmod-nft-core=y" >> .config
+        #echo "CONFIG_PACKAGE_kmod-nft-tproxy=y" >> .config
         cat $GITHUB_WORKSPACE/MT7981.txt $GITHUB_WORKSPACE/GENERAL.txt > .config
-        echo "CONFIG_PACKAGE_kmod-netlink-diag=y" >> .config
-        echo "CONFIG_PACKAGE_kmod-nft-core=y" >> .config
-        echo "CONFIG_PACKAGE_kmod-nft-tproxy=y" >> .config
         # usb bluetooth audio
         echo "CONFIG_PACKAGE_kmod-input-uinput=y" >> .config
         echo "CONFIG_PACKAGE_kmod-6lowpan=y" >> .config
@@ -104,7 +104,7 @@ jobs:
         # openlist
         echo "CONFIG_PACKAGE_kmod-fuse=y" >> .config
         # device
-        echo "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc=y" >> .config
+        #echo "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc=y" >> .config
         
     - name: Download package
       id: package
