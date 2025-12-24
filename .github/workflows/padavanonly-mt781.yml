@@ -105,7 +105,8 @@ jobs:
         # openlist
         echo "CONFIG_PACKAGE_kmod-fuse=y" >> .config
         # device
-        #echo "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc=y" >> .config
+        echo "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc-mtk=y" >> .config
+        echo "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-nand-mtk=y" >> .config
         
     - name: Download package
       id: package
