@@ -78,6 +78,7 @@ jobs:
       run: |
         cd openwrt
         cp -f ./defconfig/mt7981-ax3000.config .config
+        sed -i 's/_mediatek_mt7981/_mediatek_filogic/g' .config
         echo "CONFIG_PACKAGE_kmod-nft-compat=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-fib=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-nat=y" >> .config
@@ -104,7 +105,7 @@ jobs:
         # openlist
         echo "CONFIG_PACKAGE_kmod-fuse=y" >> .config
         # device
-        echo "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc=y" >> .config
+        #echo "CONFIG_TARGET_DEVICE_mediatek_filogic_DEVICE_cmcc_rax3000m-emmc=y" >> .config
         
     - name: Download package
       id: package
