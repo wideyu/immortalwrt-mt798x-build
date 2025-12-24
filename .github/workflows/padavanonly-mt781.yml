@@ -77,8 +77,9 @@ jobs:
     - name: Load custom config
       run: |
         cd openwrt
-        cp -f ./defconfig/mt7981-ax3000.config .config
-        sed -i 's/_mediatek_mt7981/_mediatek_filogic/g' .config
+        #cp -f ./defconfig/mt7981-ax3000.config .config
+        #sed -i 's/_mediatek_mt7981/_mediatek_filogic/g' .config
+        cat $GITHUB_WORKSPACE/MT7981.txt $GITHUB_WORKSPACE/GENERAL.txt > .config
         echo "CONFIG_PACKAGE_kmod-nft-compat=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-fib=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-nat=y" >> .config
@@ -87,7 +88,6 @@ jobs:
         echo "CONFIG_PACKAGE_kmod-netlink-diag=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-core=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-tproxy=y" >> .config
-        #cat $GITHUB_WORKSPACE/MT7981.txt $GITHUB_WORKSPACE/GENERAL.txt > .config
         # usb bluetooth audio
         echo "CONFIG_PACKAGE_kmod-input-uinput=y" >> .config
         echo "CONFIG_PACKAGE_kmod-6lowpan=y" >> .config
