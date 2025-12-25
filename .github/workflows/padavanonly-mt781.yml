@@ -49,9 +49,11 @@ jobs:
         echo "Free space:"
         df -hT $PWD
         git clone $REPO_URL --depth=9 --single-branch --branch $REPO_BRANCH openwrt
-        git reset --hard ee09c9
         ln -sf /srcdir/openwrt $GITHUB_WORKSPACE/openwrt
-        echo "REPO_HEAD=_$(git ls-remote $REPO_URL HEAD | head -c7)" >> $GITHUB_ENV
+        cd openwrt
+        #echo "REPO_HEAD=$(git ls-remote $REPO_URL HEAD | head -c7)" >> $GITHUB_ENV
+        git reset --hard ee09c9
+        echo "REPO_HEAD=ee09c9" >> $GITHUB_ENV
         
         # GitHub Action 移除国内下载源
         PROJECT_MIRRORS_FILE="./scripts/projectsmirrors.json"
