@@ -52,8 +52,8 @@ jobs:
         ln -sf /srcdir/openwrt $GITHUB_WORKSPACE/openwrt
         cd openwrt
         #echo "REPO_HEAD=$(git ls-remote $REPO_URL HEAD | head -c7)" >> $GITHUB_ENV
-        git reset --hard ee09c9
-        echo "REPO_HEAD=ee09c9" >> $GITHUB_ENV
+        git reset --hard ee09cf9
+        echo "REPO_HEAD=ee09cf9" >> $GITHUB_ENV
         
         # GitHub Action 移除国内下载源
         PROJECT_MIRRORS_FILE="./scripts/projectsmirrors.json"
