@@ -48,12 +48,12 @@ jobs:
       run: |
         echo "Free space:"
         df -hT $PWD
-        git clone $REPO_URL --depth=9 --single-branch --branch $REPO_BRANCH openwrt
+        git clone $REPO_URL --depth=1 --single-branch --branch $REPO_BRANCH openwrt
         ln -sf /srcdir/openwrt $GITHUB_WORKSPACE/openwrt
         cd openwrt
-        #echo "REPO_HEAD=$(git ls-remote $REPO_URL HEAD | head -c7)" >> $GITHUB_ENV
-        git reset --hard ee09cf9
-        echo "REPO_HEAD=ee09cf9" >> $GITHUB_ENV
+        echo "REPO_HEAD=$(git ls-remote $REPO_URL HEAD | head -c7)" >> $GITHUB_ENV
+        #git reset --hard ee09cf9
+        #echo "REPO_HEAD=ee09cf9" >> $GITHUB_ENV
         
         # GitHub Action 移除国内下载源
         PROJECT_MIRRORS_FILE="./scripts/projectsmirrors.json"
@@ -80,9 +80,9 @@ jobs:
     - name: Load custom config
       run: |
         cd openwrt
-        #cp -f ./defconfig/mt7981-ax3000.config .config
-        #sed -i 's/_mediatek_mt7981/_mediatek_filogic/g' .config
-        cat $GITHUB_WORKSPACE/MT7981.txt $GITHUB_WORKSPACE/GENERAL.txt > .config
+        cp -f ./defconfig/mt7981-ax3000.config .config
+        sed -i 's/_mediatek_mt7981/_mediatek_filogic/g' .config
+        #cat $GITHUB_WORKSPACE/MT7981.txt $GITHUB_WORKSPACE/GENERAL.txt > .config
         echo "CONFIG_PACKAGE_kmod-nft-compat=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-fib=y" >> .config
         echo "CONFIG_PACKAGE_kmod-nft-nat=y" >> .config
