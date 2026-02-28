@@ -105,6 +105,8 @@ jobs:
         echo "CONFIG_PACKAGE_kmod-usb-audio=y" >> .config
         echo "CONFIG_PACKAGE_kmod-input-core=y" >> .config
         echo "CONFIG_PACKAGE_bluez-alsa=y" >> .config
+        # usb cdc-ether
+        echo "CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y" >> .config
         # openlist
         echo "CONFIG_PACKAGE_kmod-fuse=y" >> .config
         # device
