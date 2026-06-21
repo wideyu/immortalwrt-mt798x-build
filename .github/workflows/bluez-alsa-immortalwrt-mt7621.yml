@@ -71,9 +71,9 @@ jobs:
     - name: Download Tools & Toolchain
       run: |
         cd openwrt
-        make tools/download -j$(nproc)
-        make toolchain/download -j$(nproc)
-        make package/feeds/packages/bluez-alsa/download -j$(nproc)
+        make tools/download V=s
+        make toolchain/download V=s
+        make package/feeds/packages/bluez-alsa/download -V=s
 
     - name: Compile Toolchain
       run: |
