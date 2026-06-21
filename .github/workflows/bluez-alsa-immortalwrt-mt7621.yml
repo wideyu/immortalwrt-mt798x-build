@@ -85,7 +85,7 @@ jobs:
       run: |
         cd openwrt
         # 精确单独编译组件
-        make package/utils/bluez/compile -j$(nproc) V=s
+        make package/feeds/packages/bluez/compile -j$(nproc) V=s
         make package/feeds/packages/bluez-alsa/compile -j$(nproc) V=s
 
     - name: Organize APK Files
