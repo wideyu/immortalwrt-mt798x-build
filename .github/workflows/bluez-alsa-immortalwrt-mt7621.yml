@@ -73,7 +73,7 @@ jobs:
         cd openwrt
         make tools/download V=s
         make toolchain/download V=s
-        make package/feeds/packages/bluez-alsa/download -V=s
+        make package/feeds/packages/bluez-alsa/download V=s
 
     - name: Compile Toolchain
       run: |
