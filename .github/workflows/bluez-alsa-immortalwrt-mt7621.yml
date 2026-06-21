@@ -54,18 +54,32 @@ jobs:
     - name: Configure Target for MT7621
       run: |
         cd openwrt
-        # 核心修改：锁定目标架构为 MT7621 所在的 ramips/mt7621 平台
+        # 1. 锁定目标硬件架构
         echo "CONFIG_TARGET_ramips=y" > .config
         echo "CONFIG_TARGET_ramips_mt7621=y" >> .config
         
         make defconfig
         
-        # 将 bluez-alsa 及相关底层依赖强行激活为模块化编译（生成 apk）
-        echo "CONFIG_PACKAGE_bluez-alsa=m" >> .config
-        echo "CONFIG_PACKAGE_bluez-utils=m" >> .config
+        # 2. 显式激活核心目标包（设为模块编译 =m，生成 apk）
         echo "CONFIG_PACKAGE_bluez-daemon=m" >> .config
+        echo "CONFIG_PACKAGE_bluez-utils=m" >> .config
+        echo "CONFIG_PACKAGE_bluez-alsa=m" >> .config
         
-        # 补全可能缺失的音频依赖库（如 sbc、fdk-aac 等）
+        # 3. 精准补充：bluez 编译必须的底层系统依赖库（设为 =m，让系统生成对应的头文件和符号表）
+        echo "CONFIG_PACKAGE_dbus=m" >> .config
+        echo "CONFIG_PACKAGE_glib2=m" >> .config
+        echo "CONFIG_PACKAGE_libical=m" >> .config
+        echo "CONFIG_PACKAGE_libdbus=m" >> .config
+        echo "CONFIG_PACKAGE_libffi=m" >> .config
+        echo "CONFIG_PACKAGE_libattr=m" >> .config
+        echo "CONFIG_PACKAGE_libncurses=m" >> .config
+        echo "CONFIG_PACKAGE_libreadline=m" >> .config
+        
+        # 4. 精准补充：bluez-alsa 编译必须的音频依赖库
+        echo "CONFIG_PACKAGE_alsa-lib=m" >> .config
+        echo "CONFIG_PACKAGE_sbc=m" >> .config
+        
+        # 5. 让 OpenWrt 自动补全上述依赖包所需的二级间接依赖（如 zlib, libiconv 等）
         make defconfig
 
     - name: Download Tools & Toolchain
